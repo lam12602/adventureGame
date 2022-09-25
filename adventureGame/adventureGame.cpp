@@ -2,19 +2,77 @@
 //
 
 #include <iostream>
+#include <string>
+#include "Player.h"
+#include "Monster.h"
+#include "Item.h"
+#include "Feature.h"
+#include "Area.h"
+
+void printstatementP(Player Info)
+{
+    std::cout << Info.health << " health\n" << Info.attack << " attack\n" << Info.armour << " has armour\n" << Info.description << "\n" << Info.equipment << "\n" << Info.inventory << "\n";
+}
+
+void printstatementM(Monster Info)
+{
+    std::cout << Info.health << " health\n" << Info.attack << " attack\n" << Info.name << "\n";
+}
+
+void printstatementI(Item Info)
+{
+    std::cout << Info.description << "\n" << Info.name << "\n";
+}
+
+void printstatementF(Feature Info)
+{
+    std::cout << Info.description << "\n" << Info.name << "\n";
+}
+
+void printstatementA(Area Info)
+{
+    std::cout << Info.description << "\n" << Info.name << "\n" << Info.contents << "\n" << Info.exits << "\n";
+}
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    Player P1;
+
+    P1.attack = 6;
+    P1.health = 10;
+    P1.armour = "yes";
+    P1.description = "Beig";
+    P1.equipment = { "sword", "shield" };
+    P1.inventory = { "key", "Lamp", "book" };
+
+    Monster M1;
+
+    M1.attack = 3;
+    M1.name = "ah";
+    M1.health = 5;
+
+    Item I1;
+
+    I1.name = "Key";
+    I1.description = "A rusty key";
+
+    Area A1;
+    A1.name = "West wing";
+    A1.contents = {"bed","book", "crowbar"};
+    A1.description = "dark and gloomy";
+    A1.exits = { "west", "north" };
+
+    Feature F1;
+    F1.name = "Event1";
+    F1.description = "Thia is opening of a door";
+
+    printstatementP(P1);
+    printstatementM(M1);
+    printstatementI(I1);
+    printstatementF(F1);
+    printstatementA(A1);
+
+
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
 
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
