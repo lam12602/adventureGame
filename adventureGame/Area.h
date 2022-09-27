@@ -6,7 +6,7 @@ class Area
 public:
 	std::string name;
 	std::string description;
-	std::string contents{};
-	std::string exits{};
+	std::vector<std::string> contents;
+	std::vector<std::string> exits;
 };
 

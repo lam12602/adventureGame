@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include<vector>
 class Player
 {
 public:
@@ -7,7 +8,7 @@ public:
 	int health;
 	std::string description;
 	std::string armour;
-	std::string equipment{};
-	std::string inventory{};
+	std::vector<std::string> equipment;
+	std::vector<std::string> inventory;
 };
 

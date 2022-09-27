@@ -38,12 +38,15 @@ int main()
 {
     Player P1;
 
+    //push back for vector
     P1.attack = 6;
     P1.health = 10;
     P1.armour = "yes";
     P1.description = "Beig";
-    P1.equipment = { "sword", "shield" };
-    P1.inventory = { "key", "Lamp", "book" };
+    P1.equipment.push_back("sword");
+    P1.inventory.push_back("key");
+    P1.equipment.push_back("sheild");
+    P1.inventory.push_back("book");
 
     Monster M1;
 
@@ -58,9 +61,10 @@ int main()
 
     Area A1;
     A1.name = "West wing";
-    A1.contents = {"bed","book", "crowbar"};
+    A1.contents.push_back("bed");
     A1.description = "dark and gloomy";
-    A1.exits = { "west", "north" };
+    A1.exits.push_back("west");
+    A1.exits.push_back("east");
 
     Feature F1;
     F1.name = "Event1";
