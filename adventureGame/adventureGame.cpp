@@ -31,7 +31,7 @@ void printstatementF(Feature Info)
 
 void printstatementA(Area Info)
 {
-    std::cout << Info.description << "\n" << Info.name << "\n" << Info.contents << "\n" << Info.exits << "\n";
+    std::cout << Info.description << "\n" << Info.name << "\n" << Info.connectingAreas << "\n" << Info.exits << "\n";
 }
 
 int main()
@@ -61,7 +61,8 @@ int main()
 
     Area A1;
     A1.name = "West wing";
-    A1.contents.push_back("bed");
+    A1.connectingAreas.push_back("north wing");
+    A1.connectingAreas.push_back("south wing");
     A1.description = "dark and gloomy";
     A1.exits.push_back("west");
     A1.exits.push_back("east");
@@ -75,6 +76,8 @@ int main()
     printstatementI(I1);
     printstatementF(F1);
     printstatementA(A1);
+    A1.look();
+    A1.go();
 
 
 }
