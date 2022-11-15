@@ -11,7 +11,7 @@
 
 void printstatementP(Player Info)
 {
-    std::cout << Info.health << " health\n" << Info.attack << " attack\n" << Info.armour << " has armour\n" << Info.description << "\n" << Info.equipment << "\n" << Info.inventory << "\n";
+    std::cout << Info.health << " health\n" << Info.attack << " attack\n" << Info.armour << " has armour\n" << Info.description << "\n" << Info.equipment[0] << ", " << Info.equipment[1] << "\n" << Info.inventory[0] << ", " << Info.inventory[1] << "\n";
 }
 
 void printstatementM(Monster Info)
@@ -31,7 +31,7 @@ void printstatementF(Feature Info)
 
 void printstatementA(Area Info)
 {
-    std::cout << Info.description << "\n" << Info.name << "\n" << Info.connectingAreas << "\n" << Info.exits << "\n";
+    std::cout << Info.description << "\n" << Info.name << "\n" << Info.connectingAreas[0] << "\n" << Info.connectingAreas[1] << "\n" << Info.exits[0] << "\n" << Info.exits[1] << "\n";
 }
 
 int main()
@@ -59,10 +59,16 @@ int main()
     I1.name = "Key";
     I1.description = "A rusty key";
 
+    Area AA;
+    AA.name = "West wing";
+
+    Area AB;
+    AB.name = "East wing";
+
     Area A1;
-    A1.name = "West wing";
-    A1.connectingAreas.push_back("north wing");
-    A1.connectingAreas.push_back("south wing");
+    A1.name = "North wing";
+    A1.connectingAreas.push_back(AA.name);
+    A1.connectingAreas.push_back(AB.name);
     A1.description = "dark and gloomy";
     A1.exits.push_back("west");
     A1.exits.push_back("east");

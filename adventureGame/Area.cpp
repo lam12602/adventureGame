@@ -13,7 +13,7 @@ Area::Area()
 
 void Area::look()
 {
-	std::cout << "The area you are in looks like " << description << " and the surrounding areas are " << connectingAreas << "\n";
+	std::cout << "The area you are in looks like " << description << " and the surrounding areas are " << connectingAreas[0] << ", " << connectingAreas[1] << "\n";
 }
 
 void Area::go()
