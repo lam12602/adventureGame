@@ -10,6 +10,8 @@ public:
 
 	Player(int newAttack, int newHealth, std::string newDescription, std::string newArmour, std::vector<std::string> newEquipment, std::vector<std::string> newInventory, Area* newArea);
 
+
+private:
 	int attack;
 	int health;
 	std::string description;

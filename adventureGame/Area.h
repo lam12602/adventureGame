@@ -2,6 +2,8 @@
 #include <string>
 #include<vector>
 
+class Player;
+
 class Area
 {
 public:
@@ -11,6 +13,7 @@ public:
 	void go();
 
 
+private:
 	std::string name;
 	std::string description;
 	std::vector<std::string> connectingAreas;

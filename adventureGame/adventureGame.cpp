@@ -9,7 +9,7 @@
 #include "Feature.h"
 #include "Area.h"
 
-void printstatementP(Player Info)
+/*void printstatementP(Player Info)
 {
     std::cout << Info.health << " health\n" << Info.attack << " attack\n" << Info.armour << " has armour\n" << Info.description << "\n" << Info.equipment[0] << ", " << Info.equipment[1] << "\n" << Info.inventory[0] << ", " << Info.inventory[1] << "\n";
 }
@@ -32,7 +32,7 @@ void printstatementF(Feature Info)
 void printstatementA(Area Info)
 {
     std::cout << Info.description << "\n" << Info.name << "\n" << Info.connectingAreas[0] << "\n" << Info.connectingAreas[1] << "\n" << Info.exits[0] << "\n" << Info.exits[1] << "\n";
-}
+}*/
 
 int main()
 {
@@ -77,11 +77,11 @@ int main()
     F1.name = "Event1";
     F1.description = "Thia is opening of a door";
 
-    printstatementP(P1);
+    /*printstatementP(P1);
     printstatementM(M1);
     printstatementI(I1);
     printstatementF(F1);
-    printstatementA(A1);
+    printstatementA(A1);*/
     A1.look();
     A1.go();
 
