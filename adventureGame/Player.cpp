@@ -21,3 +21,28 @@ Player::Player(int newAttack, int newHealth, std::string newDescription, std::st
 	,currentArea(nullptr)
 {
 }
+
+void Player::DealDamage(int damageToDeal)
+{
+	currentHealth -= damageToDeal;
+}
+
+Area* Player::GetCurrentArea()
+{
+	return currentArea;
+}
+
+int Player::GetAttack()
+{
+	return attack;
+}
+
+bool Player::GetAlive()
+{
+	return currentHealth > 0;
+}
+
+void Player::SetCurrentArea(Area* newCurrentArea)
+{
+	currentArea = newCurrentArea;
+}

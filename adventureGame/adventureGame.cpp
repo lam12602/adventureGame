@@ -1,90 +1,117 @@
-// adventureGame.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
-#include <string>
 #include "Player.h"
-#include "Monster.h"
-#include "Item.h"
-#include "Feature.h"
 #include "Area.h"
-
-/*void printstatementP(Player Info)
-{
-    std::cout << Info.health << " health\n" << Info.attack << " attack\n" << Info.armour << " has armour\n" << Info.description << "\n" << Info.equipment[0] << ", " << Info.equipment[1] << "\n" << Info.inventory[0] << ", " << Info.inventory[1] << "\n";
-}
-
-void printstatementM(Monster Info)
-{
-    std::cout << Info.health << " health\n" << Info.attack << " attack\n" << Info.name << "\n";
-}
-
-void printstatementI(Item Info)
-{
-    std::cout << Info.description << "\n" << Info.name << "\n";
-}
-
-void printstatementF(Feature Info)
-{
-    std::cout << Info.description << "\n" << Info.name << "\n";
-}
-
-void printstatementA(Area Info)
-{
-    std::cout << Info.description << "\n" << Info.name << "\n" << Info.connectingAreas[0] << "\n" << Info.connectingAreas[1] << "\n" << Info.exits[0] << "\n" << Info.exits[1] << "\n";
-}*/
+#include "Monster.h"
 
 int main()
 {
-    Player P1;
+    @@ - 25, 16 + 26, 24 @@ int main()
+        Area belfry("Belfry", "This Belfry is full of bats. Lots and lots of bats. Bats in the Belfry. Below you is the Throneroom.");
 
-    //push back for vector
-    P1.attack = 6;
-    P1.health = 10;
-    P1.armour = "yes";
-    P1.description = "Beig";
-    P1.equipment.push_back("sword");
-    P1.inventory.push_back("key");
-    P1.equipment.push_back("sheild");
-    P1.inventory.push_back("book");
+    // Setup exits for each area
+    entrance.exits.push_back(&hallway);
+    hallway.exits.push_back(&entrance);
+    hallway.exits.push_back(&throneroom);
+    throneroom.exits.push_back(&hallway);
+    throneroom.exits.push_back(&crack);
+    throneroom.exits.push_back(&belfry);
+    crack.exits.push_back(&throneroom);
+    crack.exits.push_back(&chamber);
+    chamber.exits.push_back(&crack);
+    belfry.exits.push_back(&throneroom);
+    entrance.AddExit(&hallway);
+    hallway.AddExit(&entrance);
+    hallway.AddExit(&throneroom);
+    throneroom.AddExit(&hallway);
+    throneroom.AddExit(&crack);
+    throneroom.AddExit(&belfry);
+    crack.AddExit(&throneroom);
+    crack.AddExit(&chamber);
+    chamber.AddExit(&crack);
+    belfry.AddExit(&throneroom);
 
-    Monster M1;
+    // Create Monsters
+    Monster goblin("Goblin", "A smelly green goblin.", 50, 5);
+    Monster goblinKing("GoblinKing", "Some kind of rock star with very tight pants.", 200, 50);
+    Monster spider("Spider", "A giant spider. Just wants to catch and eat giant flies - your friend, really.", 100, 10);
 
-    M1.attack = 3;
-    M1.name = "ah";
-    M1.health = 5;
+    hallway.AddMonster(&goblin);
+    throneroom.AddMonster(&goblinKing);
 
-    Item I1;
+    // Create the player
+    std::cout << "Please name your character: " << std::endl;
+    @@ - 49, 14 + 58, 14 @@ int main()
 
-    I1.name = "Key";
-    I1.description = "A rusty key";
+        // We tell them to start in the entrance room, and use the name and description they provide.
+        Player myPlayer(playerName, playerDescription);
+    myPlayer.currentArea = &entrance;
+    myPlayer.SetCurrentArea(&entrance);
 
-    Area AA;
-    AA.name = "West wing";
+    bool exit = false;
 
-    Area AB;
-    AB.name = "East wing";
+    while (exit == false)
+    {
+        // Print out where the player currently is, and their current health.
+        std::cout << "You are in the " << myPlayer.currentArea->name << std::endl;
+        std::cout << "You are in the " << myPlayer.GetCurrentArea()->GetName() << std::endl;
 
-    Area A1;
-    A1.name = "North wing";
-    A1.connectingAreas.push_back(AA.name);
-    A1.connectingAreas.push_back(AB.name);
-    A1.description = "dark and gloomy";
-    A1.exits.push_back("west");
-    A1.exits.push_back("east");
+        std::cout << "What do you want to do?" << std::endl << std::endl;
 
-    Feature F1;
-    F1.name = "Event1";
-    F1.description = "Thia is opening of a door";
+        @@ - 72, 16 + 81, 15 @@ int main()
+            if (choice == "area")
+            {
+                // Go to our current area and Look at it!
+                myPlayer.currentArea->Look();
+                myPlayer.GetCurrentArea()->Look();
+            }
+            else if (choice == "self")
+            {
+                myPlayer.Look();
+            }
+            else
+            {
+                std::cout << "Sorry, I didn't understand the target \"" << choice << "\"" << std::endl;
+                std::cout << "Try looking at the area around you, yourself, or a specific item, feature, or monster!" << std::endl << std::endl;
+                myPlayer.GetCurrentArea()->LookAtContents(choice);
+            }
+    }
+        else if (choice == "go")
+        @@ - 91, 7 + 99, 14 @@ int main()
+        std::cin >> choice;
 
-    /*printstatementP(P1);
-    printstatementM(M1);
-    printstatementI(I1);
-    printstatementF(F1);
-    printstatementA(A1);*/
-    A1.look();
-    A1.go();
+        // Try going from the current area to the target area
+        myPlayer.currentArea->Go(&myPlayer, choice);
+        myPlayer.GetCurrentArea()->Go(&myPlayer, choice);
+}
+        else if (choice == "attack")
+        {
+        std::cout << "What do you want to attack?" << std::endl << std::endl;
 
+        std::cin >> choice;
+        myPlayer.GetCurrentArea()->AttackContents(choice, &myPlayer);
+        }
+        else if (choice == "exit")
+        {
+        @@ - 105, 6 + 120, 7 @@ int main()
+            // Add to these as you add more commands!
+            std::cout << "     look" << std::endl;
+        std::cout << "     go" << std::endl;
+        std::cout << "     attack" << std::endl;
+        std::cout << "     exit" << std::endl;
+        std::cout << "     help" << std::endl;
+
+        @@ - 115, 6 + 131, 13 @@ int main()
+            std::cout << "Sorry, I didn't understand the command \"" << choice << "\"" << std::endl;
+        std::cout << "Try typing \"help\" for a list of commands." << std::endl << std::endl;
+        }
+
+
+        if (myPlayer.GetAlive() == false)
+        {
+            std::cout << "You have died. Game over." << std::endl << std::endl;
+            exit = false;
+        }
+    }
 
 }
 
