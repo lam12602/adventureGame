@@ -1,10 +1,10 @@
 #pragma once
-
+#include"Creature.h"
 #include <string>
 
 class Player;
 
-class Monster
+class Monster : public Creature
 {
 
 public:

@@ -1,8 +1,9 @@
 #pragma once
+#include"Creature.h"
 #include <string>
 #include<vector>
 class Area;
-class Player
+class Player : public Creature
 {
 public:
 
