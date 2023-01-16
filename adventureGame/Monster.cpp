@@ -23,7 +23,7 @@ void Monster::Look()
 	std::cout << description << std::endl;
 	if (currentHealth <= 0)
 	{
-		std::cout << "It is dead." << std::endl << std::endl;
+		std::cout << "It do be dead." << std::endl << std::endl;
 	}
 	else
 	{
@@ -37,8 +37,8 @@ void Monster::Attack(Player* thePlayer)
 {
 	if (currentHealth <= 0)
 	{
-		// It's dead! announce it.
-		std::cout << "It's already dead, Jim! You can't attack it anymore!" << std::endl << std::endl;
+		// announce it's dead! 
+		std::cout << "Stop! Stop! ... its already dead." << std::endl << std::endl;
 		return;
 	}
 
@@ -48,12 +48,12 @@ void Monster::Attack(Player* thePlayer)
 	currentHealth -= damageToMonster;
 	if (currentHealth <= 0)
 	{
-		// It's dead! announce it.
+		// announce it's dead! 
 		std::cout << name << " is killed!" << std::endl << std::endl;
 	}
 	else
 	{
-		std::cout << "The " << name << " attacks you for " << attack << " damage." << std::endl << std::endl;
+		std::cout << "The " << name << " attacks dealing " << attack << " damage." << std::endl << std::endl;
 		thePlayer->DealDamage(attack);
 	}
 }

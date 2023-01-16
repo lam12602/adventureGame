@@ -11,6 +11,8 @@ class Area : public Thing
 {
 public:
 
+	Area(std::string newName, std::string newDescription);
+
 	@@ - 16, 11 + 17, 23 @@ class Area
 
 		// Actions

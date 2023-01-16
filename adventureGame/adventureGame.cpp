@@ -68,16 +68,17 @@ int main()
             {
                 myPlayer.Look();
             }
-            else
+            else if
             {
                 std::cout << "Sorry, I didn't understand the target \"" << choice << "\"" << std::endl;
                 std::cout << "Try looking at the area around you, yourself, or a specific item, feature, or monster!" << std::endl << std::endl;
                 myPlayer.GetCurrentArea()->LookAtContents(choice);
             }
+            else if (choice == "go")
+                @@ - 91, 7 + 99, 14 @@ int main()
+                std::cin >> choice;
     }
-        else if (choice == "go")
-        @@ - 91, 7 + 99, 14 @@ int main()
-        std::cin >> choice;
+        
 
         // Try going from the current area to the target area
         myPlayer.currentArea->Go(&myPlayer, choice);
